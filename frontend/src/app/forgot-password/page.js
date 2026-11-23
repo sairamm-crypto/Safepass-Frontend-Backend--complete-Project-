@@ -156,7 +156,7 @@ export default function ForgotPasswordPage() {
                 <div className="bg-blue-500/20 border border-blue-400/50 rounded-lg p-4">
                   <p className="text-white text-sm">
                     <span className="font-semibold block mb-2">💡 Need immediate help?</span>
-                    If you don't receive the reset link or have any issues, please contact your administrator for password reset assistance.
+                    If you don&apos;t receive the reset link or have any issues, please contact your administrator for password reset assistance.
                   </p>
                 </div>
                 <button
