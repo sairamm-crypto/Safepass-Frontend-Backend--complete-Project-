@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { Transporter } from 'nodemailer';
+import { Transporter, SentMessageInfo } from 'nodemailer';
 
 /* -------------------- */
 /* TYPE DEFINITIONS */
@@ -20,7 +20,7 @@ interface GatePass {
 
 @Injectable()
 export class EmailService {
-  private readonly transporter: Transporter;
+  private readonly transporter: Transporter<SentMessageInfo>;
   private readonly logger = new Logger(EmailService.name);
 
   constructor() {
@@ -62,16 +62,16 @@ export class EmailService {
         ? this.getRegisteredUserResetEmailText(resetUrl)
         : this.getUnregisteredUserResetEmailText();
 
-      const info = await this.transporter.sendMail({
+      const info = (await this.transporter.sendMail({
         from: `"SafePass" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: 'SafePass - Password Reset Request',
         html: htmlContent,
         text: textContent,
-      });
+      })) as { messageId?: string };
 
       this.logger.log(
-        `Password reset email sent successfully to ${email}: ${info.messageId}`,
+        `Password reset email sent successfully to ${email}: ${info.messageId ?? 'unknown'}`,
       );
     } catch (error) {
       this.logger.error(
