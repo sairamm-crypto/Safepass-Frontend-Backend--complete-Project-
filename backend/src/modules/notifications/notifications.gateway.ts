@@ -119,7 +119,7 @@ export class NotificationsGateway
   }
 
   // Notify about new visitor request
-  notifyNewVisitorRequest(hostId: string): void {
+  notifyNewVisitorRequest(_hostId: string): void {
     this.server.emit('new-visitor-request', {
       type: 'new-visitor-request',
       timestamp: new Date(),
