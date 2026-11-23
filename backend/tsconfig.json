@@ -20,11 +20,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    
-    // Add typeRoots for custom type declarations
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    
-    // Modern path mapping (replaces baseUrl)
     "paths": {
       "@/*": ["./src/*"],
       "@modules/*": ["./src/modules/*"],
@@ -32,6 +28,6 @@
       "@config/*": ["./src/config/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules", "dist"]
 }
